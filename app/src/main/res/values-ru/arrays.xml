@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tab_titles">
+        <item>дома</item>
+        <item>Devices</item>
+        <item>информация об устройстве</item>
+    </string-array>
+
+    <string-array name="tab_media">
+        <item>изображение</item>
+        <item>видео</item>
+    </string-array>
+
+    <string-array name="local_tab">
+        <item>Местные фотографии</item>
+        <item>Местное Видео</item>
+    </string-array>
+
+    <string-array name="main_item">
+        <item>Живая</item>
+        <item>Настройки устройства</item>
+        <item>файлы изображений</item>
+        <item>Видеофайлы</item>
+        <item>фотография</item>
+        <item>запись(начать/остановить)</item>
+        <item>Видеокамеры</item>
+        <item>Локальный файл</item>
+    </string-array>
+</resources>

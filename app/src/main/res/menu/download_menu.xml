@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/download_select_all"
+        android:checkable="true"
+        android:checked="false"
+        android:title=""
+        android:icon="@drawable/ic_check_box_outline_blank_white_24dp"
+        app:showAsAction="always" />
+<!--android:icon="@drawable/ic_check_box_outline_blank_white_24dp"-->
+<!--android:title="@string/add_device"-->
+</menu>

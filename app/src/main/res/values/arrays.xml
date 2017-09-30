@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="tab_titles">
+    <item>Home</item>
+    <item>Devices</item>
+    <item>Device Information</item>
+  </string-array>
+
+  <string-array name="tab_media">
+    <item>Photo</item>
+    <item>Video</item>
+  </string-array>
+
+
+  <string-array name="local_tab">
+    <item>Local image</item>
+    <item>Local video</item>
+  </string-array>
+  <string-array name="main_item">
+    <item>live</item>
+    <item>Device settings</item>
+    <item>Image file</item>
+    <item>Video file</item>
+    <item>Take pictures</item>
+    <item>Video (start / stop)</item>
+    <item>Take pictures in the video</item>
+    <item>Local File</item>
+  </string-array>
+</resources>

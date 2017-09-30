@@ -1,0 +1,85 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hkcect.z12.fragment.AboutFragment">
+
+    <CheckBox
+        android:id="@+id/cb_night_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="夜间模式"
+        android:textSize="25sp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:paddingTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_space"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:drawableLeft="@drawable/ic_sd_storage_black_24dp"
+            android:drawablePadding="10dp"
+            android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:gravity="center|left"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/storage_manager"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <View
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+             />
+        <!--<TextView-->
+            <!--android:id="@+id/tv_language"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="48dp"-->
+            <!--android:drawableLeft="@drawable/language"-->
+            <!--android:drawablePadding="10dp"-->
+            <!--android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"-->
+            <!--android:gravity="center|left"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:paddingRight="10dp"-->
+            <!--android:text="@string/app_language"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:textSize="20sp" />-->
+
+        <View
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+             />
+
+        <TextView
+            android:id="@+id/tv_about"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:drawableLeft="@drawable/about"
+            android:drawablePadding="10dp"
+            android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:gravity="center|left"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/about_us"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <View
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            />
+
+    </LinearLayout>
+
+
+</FrameLayout>

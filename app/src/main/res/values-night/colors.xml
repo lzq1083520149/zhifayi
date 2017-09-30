@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#38373C</color>
+    <color name="colorPrimaryDark">#38373C</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+
+    <!--<color name="colorPrimaryDark">#1e1e1e</color>-->
+    <!--<color name="colorPrimary">#0e0e0e</color>-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+    <color name="start_background">#ff0099cc</color>
+
+    <color name="white">#6c5454</color>
+
+    <color name="white_pressed">#abc8adad</color>
+
+    <color name="half_black">#c39e9e</color>
+    <color name="half_black_translate">#a1efc0c0</color>
+
+    <color name="app_background">#422727</color>
+    <color name="tab_background">#383531</color>
+    <color name="tab_text_select">#d0bdba</color>
+    <color name="tab_text">#807d78</color>
+
+    <color name="translate_text">#706a6a6a</color>
+    <color name="view_line">#ff9c9c</color>
+    <color name="view_background">#ffc5c5</color>
+
+    <color name="back_photo_video">#1A9FE4</color>
+    <color name="back_main">#38373C</color>
+</resources>

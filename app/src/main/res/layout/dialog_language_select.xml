@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <!--<RelativeLayout-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<TextView-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="繁體中文" />-->
+
+        <!--<CheckBox-->
+            <!--android:layout_marginRight="8dp"-->
+            <!--android:button="null"-->
+            <!--android:background="@drawable/language_select"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true" />-->
+    <!--</RelativeLayout>-->
+    <!--<view-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1px"></view>-->
+    <!--<RelativeLayout-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<TextView-->
+
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="简体中文" />-->
+
+        <!--<CheckBox-->
+            <!--android:layout_marginRight="8dp"-->
+            <!--android:button="null"-->
+            <!--android:background="@drawable/language_select"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true" />-->
+    <!--</RelativeLayout>-->
+    <!--<view-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1px"></view>-->
+    <!--<RelativeLayout-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<TextView-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="English" />-->
+
+        <!--<CheckBox-->
+            <!--android:layout_marginRight="8dp"-->
+            <!--android:button="null"-->
+            <!--android:background="@drawable/language_select"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true" />-->
+    <!--</RelativeLayout>-->
+</LinearLayout>

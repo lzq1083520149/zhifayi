@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@color/view_line"
+    android:layout_height="80dp">
+
+    <ImageView
+        android:id="@+id/iv_download_item"
+        android:layout_width="110dp"
+        android:scaleType="fitXY"
+        android:background="@mipmap/noimage"
+        android:layout_height="80dp" />
+
+    <!--<ProgressBar-->
+        <!--android:id="@+id/pb_download"-->
+        <!--android:layout_width="110dp"-->
+        <!--android:layout_height="80dp" />-->
+
+    <TextView
+        android:id="@+id/tv_download_state"
+        android:layout_width="110dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:text=""
+        android:textSize="20sp" />
+
+    <!--<com.hkcect.z12.utils.FreshDownloadView-->
+        <!--android:id="@+id/download_pb"-->
+        <!--android:layout_marginLeft="15dp"-->
+        <!--android:layout_marginStart="15dp"-->
+        <!--android:layout_width="80dp"-->
+        <!--android:layout_height="80dp" />-->
+
+    <io.netopen.hotbitmapgg.library.view.RingProgressBar
+        android:id="@+id/download_pb"
+        android:layout_width="60dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="25dp"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        app:max="100"
+        app:ringColor="@android:color/darker_gray"
+        app:ringProgressColor="@color/colorPrimary"
+        app:ringWidth="3dp"
+        app:style="STROKE"
+        app:textColor="@color/colorPrimary"
+        app:textIsShow="true"
+        app:textSize="16sp" />
+
+    <CheckBox
+        android:id="@+id/cb_download_item"
+        android:layout_width="30dp"
+        android:button="@drawable/download_checkbox_background"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:layout_toEndOf="@id/iv_download_item"
+        android:layout_toLeftOf="@id/cb_download_item"
+        android:layout_toRightOf="@id/iv_download_item"
+        android:layout_toStartOf="@id/cb_download_item"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_download_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:text="20170305_110110_004.JPG"
+            android:gravity="center|start" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_download_time"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:text="2017-03-28 14:43:28" />
+
+            <TextView
+                android:id="@+id/tv_download_size"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center|end"
+                android:text="60.51Mb" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

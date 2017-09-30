@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"  tools:ignore="MissingTranslation">
+
+
+    <string name="action_settings">устанавливать</string>
+    <string name="app_name">тело</string>
+    <string name="refresh">обновление</string>
+    <string name="open_wifi">Открытый WiFi и подключение N10</string>
+    <string name="download">скачать</string>
+    <string name="ok">ОК</string>
+    <string name="cancel">Отмена</string>
+    <string name="delete">Удалить</string>
+    <string name="delete_photo">Для удаления снимка</string>
+    <string name="delete_video">Удалить видео</string>
+    <string name="delete_message">Действительно удалить</string>
+    <string name="intent_to_video_activity">Перенаправление ......</string>
+    <string name="select_all">Выбрать все</string>
+    <string name="cancel_all">Отмените</string>
+    <string name="download_select">Скачать выбранный</string>
+    <string name="delete_select">Удалить выбранный</string>
+    <string name="now_delete_item">Удаление</string>
+    <string name="no_available_player">Я не нашел видеоплеер</string>
+    <string name="on_loading">Загрузка ......</string>
+    <string name="null_source">Файл не найден</string>
+    <string name="deleting">Удаление ......</string>
+    <string name="delete_all">Вы хотите, чтобы удалить все местные</string>
+    <string name="photo">изображение</string>
+    <string name="video">видео</string>
+    <string name="file">файл</string>
+    <string name="delete_or_not">Вы хотите удалить</string>
+    <string name="delete_fail">Не удалось удалить</string>
+    <string name="no_data_retry">Не синхронизируется с данными, пожалуйста, попробуйте еще раз.</string>
+    <string name="begain_download">Начать загрузку</string>
+    <string name="begain_delete">Начать Удалить</string>
+    <string name="no_query_device">Нет поиска устройства</string>
+    <string name="connection_vifi">Подключите беспроводные точки доступа Z12 устройства и повторите попытку.</string>
+    <string name="go_setting">Набор идти</string>
+    <string name="on_video_photo">Успех видеокамеры</string>
+    <string name="take_pic_fail_retry">Камера не удалось, попробуйте еще раз.</string>
+    <string name="take_pic_success">Успешно Камера также может снимать</string>
+    <string name="number_of_pic">фото</string>
+    <string name="can_record_time">Remaining recording time</string>
+    <string name="take_pic_numbers">Number of remaining pictures</string>
+    <string name="fm_version">Firmware version number</string>
+    <string name="power">Equipment power</string>
+    <string name="card_status">Memory card status</string>
+    <string name="available_space">Available space</string>
+    <string name="no_data">No data</string>
+    <string name="local_file">Local file</string>
+    <string name="exit">exit</string>
+    <string name="input_wifi_pwd">请输入%1$s的密码</string>
+
+
+    <!--公司名-->
+    <string name="firm_name">ADVANCED PLUS</string>
+
+</resources>

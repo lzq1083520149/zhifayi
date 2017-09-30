@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <string name="action_settings">Setting</string>
+    <string name="app_name">取证仪</string>
+    <string name="refresh">刷新</string>
+    <string name="open_wifi">打开WiFi连接N10</string>
+    <string name="download">下载</string>
+    <string name="ok">OK</string>
+    <string name="cancel">取消</string>
+    <string name="delete">删除</string>
+    <string name="delete_photo">删除这张照片</string>
+    <string name="delete_video">删除这个视频</string>
+    <string name="delete_message">确认删除</string>
+    <string name="intent_to_video_activity">Is jumping……</string>
+    <string name="select_all">全选</string>
+    <string name="cancel_all">取消选择</string>
+    <string name="download_select">下载选中项</string>
+    <string name="delete_select">删除选中项</string>
+    <string name="now_delete_item">是否删除</string>
+    <string name="no_available_player">没有找到视频播放器</string>
+    <string name="on_loading">Is delete……</string>
+    <string name="null_source">找不到文件</string>
+    <string name="deleting">正在删除……</string>
+    <string name="delete_all">是否删除所有本地</string>
+    <string name="photo">图片</string>
+    <string name="video">视频</string>
+    <string name="file">文件</string>
+    <string name="delete_or_not">确认删除</string>
+    <string name="delete_fail">删除失败</string>
+    <string name="no_data_retry">数据不同步,请重试.</string>
+    <string name="begain_download">开始下载</string>
+    <string name="begain_delete">开始删除</string>
+    <string name="no_query_device">There is no query to the device</string>
+    <string name="connection_vifi">请连接设备WiFi后再试一次.</string>
+    <string name="go_setting">Go to set</string>
+    <string name="on_video_photo">相机连接成功记录</string>
+    <string name="take_pic_fail_retry">拍照失败,请重试.</string>
+    <string name="take_pic_success">Take pictures of success, you can shoot</string>
+    <string name="number_of_pic">photos</string>
+    <string name="exit">退出</string>
+    <string name="can_record_time">Remaining recording time</string>
+    <string name="take_pic_numbers">Number of remaining pictures</string>
+    <string name="fm_version">Firmware version number</string>
+    <string name="power">Equipment power</string>
+    <string name="card_status">Memory card status</string>
+    <string name="available_space">Available space</string>
+    <string name="no_data">No data</string>
+    <string name="local_file">Local file</string>
+
+    <string name="add_device">添加设备</string>
+    <string name="input_wifi_pwd">请输入%1$s的密码</string>
+
+    <string name="content_device">正在连接设备%1$s……</string>
+
+    <string name="home">主页</string>
+    <string name="devices">设备</string>
+    <string name="about">关于</string>
+    <string name="title_activity_settings">设置</string>
+
+
+    <string name="delete_config">确定删除选中文件？</string>
+    <string name="loading_data">正在加载数据……</string>
+    <string name="title_activity_file">FileActivity</string>
+    <string name="all_photo">图片</string>
+    <string name="all_video">视频</string>
+    <string name="title_activity_setting">Setting</string>
+    <string name="title_activity_download">Download</string>
+    <string name="input_new_pwd">请输入新密码</string>
+    <string name="input_new_pwd_config">请再次输入新密码</string>
+    <string name="success_change_pwd">更改密码成功！请重新连接设备。</string>
+    <string name="failed_change_pwd">更改密码失败！请重试。</string>
+    <string name="pwd_same">密码输入不一致！</string>
+    <string name="pwd_edit">请输入8-20内的字母与数字！</string>
+    <string name="failed_set_switch">设置失败，请重试！</string>
+    <string name="format">格式化成功！</string>
+    <string name="format_config">是否要格式化！</string>
+    <string name="format_failed">格式化失败！</string>
+    <string name="title_activity_advanced">高级设置</string>
+    <string name="title_activity_info">摄像机信息</string>
+    <string name="dialog_title">Processing</string>
+    <string name="dialog_wait_message">Please wait...</string>
+    <string name="have_not_space">手机内存没有多余空间！</string>
+    <string name="title_activity_space_management">空间管理</string>
+
+    <string name="space_tips">如果剩余空间小于预留可用空间，程序将不再下载。</string>
+    <string name="save_config">保存</string>
+    <string name="part_a">剩余空间</string>
+    <string name="part_b">其他程序</string>
+    <string name="part_c">图片</string>
+    <string name="part_d">视频</string>
+    <string name="live_free_space">预留可用空间</string>
+    <string name="all_space">总容量：</string>
+    <string name="local_patch">本地数据路径:</string>
+    <string name="is_contenting_wifi">正在连接wifi……</string>
+    <string name="input_pwd">请输入Wifi密码</string>
+    <string name="select_wifi">请选择要链接的Wifi</string>
+    <string name="iput_value">请设置一个大于%1$s的值</string>
+    <string name="save_success">保存成功！</string>
+    <string name="start_download">开始下载</string>
+    <string name="failed_add">添加任务失败</string>
+    <string name="removed">Removed</string>
+    <string name="inserted">Inserted</string>
+    <string name="locked">Locked</string>
+    <string name="delete_devices_message">确定删除此设备么？请在系统wifi列表中选中此设备的WIFI并选择忘记密码。</string>
+    <string name="title_activity_about">About</string>
+    <string name="copy_right">© 2006&#8211;2017 hkcect.com\n All rights reserved.</string>
+    <string name="reset">恢复出厂设置</string>
+    <string name="collision_induction">碰撞感应灵敏度</string>
+    <string name="file_length">录制文件时长</string>
+    <string name="reset_config">是否要恢复出厂设置？恢复后，设置内数据会被全部清空。</string>
+    <string name="download_complete">文件下载完成！</string>
+    <string name="downloading_file">正在下载%1$s！</string>
+    <string name="reconnect_device">Please reconnect to your device!!</string>
+    <string name="try_again">Try again</string>
+    <string name="device_name">摄像机名称</string>
+    <string name="device_pwd">摄像机密码</string>
+    <string name="record_auto">自动录像</string>
+    <string name="record_quality">录制质量</string>
+    <string name="format_device">格式化</string>
+    <string name="advanced_settings">高级设置</string>
+    <string name="device_info">摄像机信息</string>
+    <string name="connect_failed">连接失败！</string>
+    <string name="download_failed">文件下载失败！</string>
+
+    <!--新增-->
+    <string name="storage_manager">储存管理</string>
+    <string name="about_us">关于我们</string>
+    <string name="all_picture">所有图片</string>
+    <string name="home_all_video">所有视频</string>
+    <string name="please_enter_the_numbers">请输入数字!</string>
+    <string name="please_enter_the_Wifi_password">请输入WiFi密码</string>
+    <string name="wifi_pwd_confirm">确定</string>
+    <!--下载-->
+    <string name="download_photo">图片下载</string>
+    <string name="download_in_progress">正在下载...</string>
+
+    <!--退出程序-->
+    <string name="application_exit">再按一次退出</string>
+
+
+    <!--公司名-->
+    <string name="firm_name">ADVANCED PLUS</string>
+
+    <!--空数据-->
+    <string name="null_download">没有可下载视频</string>
+    <!--语言-->
+    <string name="app_language">语言选择</string>
+</resources>
