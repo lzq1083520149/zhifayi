@@ -4,7 +4,7 @@
     <string name="action_settings">Setting</string>
     <string name="app_name">body camera</string>
     <string name="refresh">Refresh</string>
-    <string name="open_wifi">Open WiFi connection Z12</string>
+    <string name="open_wifi">Open WiFi connection body camera</string>
     <string name="download">Download</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
@@ -53,7 +53,7 @@
 
     <string name="content_device">connecting to device %1$s……</string>
 
-    <string name="home">Home</string>
+    <string name="home">Album</string>
     <string name="devices">Devices</string>
     <string name="about">About</string>
     <string name="title_activity_settings">Settings</string>
@@ -71,7 +71,8 @@
     <string name="success_change_pwd">Change password successfully! Please re-connect device.</string>
     <string name="failed_change_pwd">Failed to change password!Please try again.</string>
     <string name="pwd_same">Password input is different!</string>
-    <string name="pwd_edit">Please input password by 8&#8211;20 letters and figures!</string>
+    <string name="pwd_edit">Please input password by 8&#8211;20 letters or figures!</string>
+    <string name="pwd_edit2">Please enter at least eight letters or Numbers!</string>
     <string name="failed_set_switch">Failed setting, please try again!</string>
     <string name="format">Formatting successfully!</string>
     <string name="format_config">Do you need to format?</string>
@@ -79,6 +80,7 @@
     <string name="title_activity_advanced">Advanced setting</string>
     <string name="title_activity_info">Camera information</string>
     <string name="dialog_title">Processing</string>
+    <string name="dialog_title2">Processing</string>
     <string name="dialog_wait_message">Please wait&#8230;</string>
     <string name="have_not_space">Mobile phone storage capacity is not enough!</string>
     <string name="title_activity_space_management">Space management</string>
@@ -104,7 +106,7 @@
     <string name="locked">Locked</string>
     <string name="delete_devices_message">Do you want to delete this device? Please find this device\'s wifi in system wifi list and forget its password.</string>
     <string name="title_activity_about">About</string>
-    <string name="copy_right">© 2006&#8211;2017 hkcect.com\n All rights reserved.</string>
+    <string name="copy_right">© 2006&#8211;2017 \n All rights reserved.</string>
     <string name="reset">Reset to factory settings</string>
     <string name="collision_induction">G-sensor sensitivity</string>
     <string name="file_length">Split storage setting</string>
@@ -112,14 +114,15 @@
     <string name="download_complete">Files downloading complete</string>
     <string name="downloading_file">Downloading %1$s！</string>
     <string name="reconnect_device">Please reconnect to your device!!</string>
+    <string name="reconnect_device2">loading...</string>
     <string name="try_again">Try again</string>
-    <string name="device_name">Camera name</string>
-    <string name="device_pwd">Camera password</string>
+    <string name="device_name">Device name</string>
+    <string name="device_pwd">Device password</string>
     <string name="record_auto">Automatically recording</string>
     <string name="record_quality">Video resolution</string>
     <string name="format_device">Format</string>
     <string name="advanced_settings">Advanced settings</string>
-    <string name="device_info">Camera information</string>
+    <string name="device_info">Device information</string>
     <string name="connect_failed">Connecting failed!</string>
     <string name="download_failed">Failed to download files！</string>
 
@@ -154,7 +157,21 @@
     <string name="firm_name">ADVANCED PLUS</string>
 
     <!--空数据-->
-    <string name="null_download">No downloadable video</string>
+    <string name="null_download">No downloadable content</string>
     <!--语言-->
     <string name="app_language">language choice</string>
+    <!--wifi未连接-->
+    <string name="wifi_not_connected">WiFi Not Connected</string>
+    <string name="wifi_Switch">Switchover Device</string>
+    <string name="wifi_Switch2">Switchover</string>
+    <string name="wifi_Switch_msg">Please disconnect the current connection before new equipment</string>
+    <string name="wifi_dian_ji_lian_jie">Please click here</string>
+    <string name="ben_di_tu_pina">Photo</string>
+    <string name="ben_di_mei_tu_pina">No photos.</string>
+    <string name="ban_ben_hao">APP Version: </string>
+    <string name="ban_ben_hao2">APP Version</string>
+    <string name="ti_shi_title">Hint</string>
+    <string name="ti_shi_msg">Please connect to the right equipment</string>
+    <string name="xia_zai_ti_shi_msg">Please select at least one</string>
+    <string name="yi_xia_zai">Have downloaded</string>
 </resources>

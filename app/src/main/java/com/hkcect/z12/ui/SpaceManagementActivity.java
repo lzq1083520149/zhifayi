@@ -262,7 +262,6 @@ public class SpaceManagementActivity extends BaseActivity implements OnChartValu
 
         dataSet.setColors(colors);
         //dataSet.setSelectionShift(0f);
-
         dataSet.setValueLinePart1OffsetPercentage(80.f);
         dataSet.setValueLinePart1Length(0.2f);
         dataSet.setValueLinePart2Length(0.4f);

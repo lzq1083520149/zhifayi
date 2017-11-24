@@ -45,7 +45,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:padding="3dp"
-                android:text="8"
+                android:text="0"
                 android:textColor="@color/white" />
         </RelativeLayout>
 
@@ -97,7 +97,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:padding="3dp"
-                android:text="8"
+                android:text="0"
                 android:textColor="@color/white" />
         </RelativeLayout>
 

@@ -8,6 +8,7 @@ import android.os.Parcelable;
 public class FileDownload implements Parcelable {
     private String Url;
     private String Name;
+    private int selectPosstion;
 
     public String getUrl() {
         return Url;
@@ -25,6 +26,14 @@ public class FileDownload implements Parcelable {
         Name = name;
     }
 
+    public int getSelectPosstion() {
+        return selectPosstion;
+    }
+
+    public void setSelectPosstion(int selectPosstion) {
+        this.selectPosstion = selectPosstion;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -34,6 +43,7 @@ public class FileDownload implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(Url);
         dest.writeString(Name);
+        dest.writeInt(selectPosstion);
     }
 
 
@@ -53,6 +63,7 @@ public class FileDownload implements Parcelable {
             FileDownload p = new FileDownload();
             p.setUrl(source.readString());
             p.setName(source.readString());
+            p.setSelectPosstion(source.readInt());
             return p;
         }
 

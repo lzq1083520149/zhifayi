@@ -11,6 +11,7 @@ public class ListItem implements Serializable {
     private String url;
     public boolean isDownload = false;
     public boolean isChecked = false;
+    public int selectPosstion;
     private String SIZE;
     private String TIMECODE;
 
@@ -62,6 +63,14 @@ public class ListItem implements Serializable {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public int getSelectPosstion() {
+        return selectPosstion;
+    }
+
+    public void setSelectPosstion(int selectPosstion) {
+        this.selectPosstion = selectPosstion;
     }
 
     @Override

@@ -22,7 +22,6 @@ public class AboutActivity extends BaseActivity {
 
         tv_version = (TextView) findViewById(R.id.tv_version);
         tv_version.setText(getVersion());
-
     }
 
     /**
@@ -33,7 +32,8 @@ public class AboutActivity extends BaseActivity {
         try {
             PackageManager manager = this.getPackageManager();
             PackageInfo info = manager.getPackageInfo(this.getPackageName(), 0);
-            return info.versionName + "(" + info.versionCode + ")";
+            //return info.versionName + "(" + info.versionCode + ")";
+            return info.versionName;
         } catch (Exception e) {
             e.printStackTrace();
             return "";

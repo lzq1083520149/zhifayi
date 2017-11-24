@@ -24,6 +24,7 @@ import com.hkcect.z12.album.ListItem;
 import com.hkcect.z12.example.PlaybackActivity;
 import com.hkcect.z12.fragment.AboutFragment;
 import com.hkcect.z12.fragment.DevicesFragment;
+import com.hkcect.z12.fragment.DevicesFragment2;
 import com.hkcect.z12.fragment.LocalMediaFragment;
 import com.hkcect.z12.fragment.VideoFragment;
 import com.hkcect.z12.utils.BottomNavigationViewEx;
@@ -87,11 +88,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         mFragments = new ArrayList<>();
         for (int i = 0; i < bottomNavigationView.getMenu().size(); i++) {
             if (i == 0) {
+                DevicesFragment2 mediaFragment = DevicesFragment2.newInstance();
+                mFragments.add(i, mediaFragment);
+            } else if (i == 1) {
                 LocalMediaFragment homeFragment = LocalMediaFragment.newInstance();
                 mFragments.add(i, homeFragment);
-            } else if (i == 1) {
-                DevicesFragment mediaFragment = DevicesFragment.newInstance();
-                mFragments.add(i, mediaFragment);
+
             } else if (i == 2) {
                 Bundle mBundle = new Bundle();
                 mBundle.putInt("flag", i);
@@ -252,11 +254,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.nav_home:
+
+            case R.id.nav_devices:
                 if (mViewPager.getCurrentItem() != 0)
                     mViewPager.setCurrentItem(0, true);
                 break;
-            case R.id.nav_devices:
+            case R.id.nav_home:
                 if (mViewPager.getCurrentItem() != 1)
                     mViewPager.setCurrentItem(1, true);
                 break;

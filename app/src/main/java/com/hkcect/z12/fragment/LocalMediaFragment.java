@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.hkcect.z12.R;
@@ -95,59 +96,69 @@ public class LocalMediaFragment extends Fragment implements View.OnClickListener
 
             if (photoList.size() > 0) {
                 Glide.with(getContext()).load(photoList.get(0)).into(iv_photo);
+            } else {
+                iv_photo.setImageResource(R.mipmap.noimage);
             }
 
             if (videoList.size() > 0) {
-               new Thread(new Runnable() {
-                   @Override
-                   public void run() {
-                       bitmap = ThumbnailUtils.createVideoThumbnail(videoList.get(0), MINI_KIND);
-                       //extractThumbnail 方法二次处理,以指定的大小提取居中的图片,获取最终我们想要的图片
-                       bitmap = ThumbnailUtils.extractThumbnail(bitmap, 300, 300, ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        bitmap = ThumbnailUtils.createVideoThumbnail(videoList.get(0), MINI_KIND);
+                        //extractThumbnail 方法二次处理,以指定的大小提取居中的图片,获取最终我们想要的图片
+                        bitmap = ThumbnailUtils.extractThumbnail(bitmap, 300, 300, ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
 
-                   getActivity().runOnUiThread(new Runnable() {
-                       @Override
-                       public void run() {
-                           iv_video.setImageBitmap(bitmap);
-                       }
-                   });
-                   }
-               }).start();
-
-
-                photo_number.setText(photoList.size() + "");
-                video_number.setText(videoList.size() + "");
-                file = null;
-            }
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                iv_video.setImageBitmap(bitmap);
+                            }
+                        });
+                    }
+                }).start();
             } else {
-                photo_number.setText("0");
-                video_number.setText("0");
+                iv_video.setImageResource(R.mipmap.noimage);
             }
-
+            photo_number.setText(photoList.size() + "");
+            video_number.setText(videoList.size() + "");
+            file = null;
+        } else {
+            iv_photo.setImageResource(R.mipmap.noimage);
+            iv_video.setImageResource(R.mipmap.noimage);
+            photo_number.setText("0");
+            video_number.setText("0");
         }
 
-        @Override
-        public void onClick (View v){
-            switch (v.getId()) {
-                case R.id.relative_photo://全部图片
+    }
 
-                    if (photoList != null && photoList.size() > 0) {
-                        Bundle bundle = new Bundle();
-                        bundle.putStringArrayList("photo", photoList);
-                        bundle.putStringArrayList("video", videoList);
-                        bundle.putString("type", "photo");
-                        startActivity(new Intent(getActivity(), FileActivity.class).putExtra("data", bundle));
-                    }
-                    break;
-                case R.id.relative_video://全部视频
-                    if (videoList != null && videoList.size() > 0) {
-                        Bundle bundles = new Bundle();
-                        bundles.putStringArrayList("photo", photoList);
-                        bundles.putStringArrayList("video", videoList);
-                        bundles.putString("type", "video");
-                        startActivity(new Intent(getActivity(), FileActivity.class).putExtra("data", bundles));
-                    }
-                    break;
-            }
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.relative_photo://全部图片
+
+                if (photoList != null && photoList.size() > 0) {
+                    Bundle bundle = new Bundle();
+                    bundle.putStringArrayList("photo", photoList);
+                    bundle.putStringArrayList("video", videoList);
+                    bundle.putString("type", "photo");
+                    startActivity(new Intent(getActivity(), FileActivity.class).putExtra("data", bundle));
+                } else {
+                    Toast.makeText(getContext(), getString(R.string.ben_di_mei_tu_pina),
+                            Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.relative_video://全部视频
+                if (videoList != null && videoList.size() > 0) {
+                    Bundle bundles = new Bundle();
+                    bundles.putStringArrayList("photo", photoList);
+                    bundles.putStringArrayList("video", videoList);
+                    bundles.putString("type", "video");
+                    startActivity(new Intent(getActivity(), FileActivity.class).putExtra("data", bundles));
+                } else {
+                    Toast.makeText(getContext(), getString(R.string.ben_di_mei_tu_pina),
+                            Toast.LENGTH_SHORT).show();
+                }
+                break;
         }
     }
+}

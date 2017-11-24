@@ -8,6 +8,7 @@ import android.content.pm.ActivityInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -31,6 +32,8 @@ import com.ntk.util.Util;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 
 public class SettingActivity extends BaseActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
@@ -40,9 +43,10 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private TextView device_pwd;//摄像机密码
     private TextView tv_record_quality;//录像质量
     private TextView format;//格式化
-    private TextView advanced_settings;//高级设置
+    //private TextView advanced_settings;//高级设置
     private TextView tv_info;//摄像机信息
     private Switch switch_record;//自动录像开关
+    private TextView record_time;//录制时长
 
     private boolean isAutoRecord = false;//已经保存的信息，是否自动录像。
 
@@ -50,6 +54,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private ProgressDialog pausedialog;
     private boolean isInitDone = false;
 
+    private TreeMap menuListMap;
     private ArrayList<String> movie_res_indexList = null;
     private ArrayList<String> movie_res_infoList = null;
 
@@ -116,6 +121,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.title_activity_settings);
         setSupportActionBar(toolbar);
         initView();
     }
@@ -146,13 +152,16 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         device_pwd = (TextView) findViewById(R.id.device_pwd);
         tv_record_quality = (TextView) findViewById(R.id.tv_record_quality);
         format = (TextView) findViewById(R.id.format);
-        advanced_settings = (TextView) findViewById(R.id.advanced_settings);
+        //advanced_settings = (TextView) findViewById(R.id.advanced_settings);
         tv_info = (TextView) findViewById(R.id.tv_info);
         switch_record = (Switch) findViewById(R.id.switch_record);
 
+        record_time = (TextView) findViewById(R.id.record_time);
+        record_time.setOnClickListener(this);
+        findViewById(R.id.btn_reset).setOnClickListener(this);
+
         pausedialog = new ProgressDialog(SettingActivity.this);
         pausedialog.setTitle(getString(R.string.dialog_title));
-        pausedialog.setMessage(getString(R.string.dialog_wait_message));
         pausedialog.setCancelable(false);
         pausedialog.setCanceledOnTouchOutside(false);
 
@@ -164,13 +173,68 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         String ssid = wifiManager.getConnectionInfo().getSSID();
         device_name.setText(ssid.substring(1, ssid.length() - 1));
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                TreeMap itemMap = NVTKitModel.qryMenuItemList();
+                if (itemMap != null) {
+                    Set keys = itemMap.keySet();
+                    for (Object key1 : keys) {
+                        String key = (String) key1;
+                        menuListMap = (TreeMap) itemMap.get(key);
+                        final Set menuListKey = menuListMap.keySet();
+                        for (Object aMenuListKey : menuListKey) {
+                            final String menuListKeys = (String) aMenuListKey;
+                            String menuListValue = (String) menuListMap.get(menuListKeys);
+                            if (key.equals(DefineTable.WIFIAPP_CMD_CYCLIC_REC)) {
+                                switch (menuListValue) {
+                                    case "OFF":
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                record_time.setText(getString(R.string.off));
+                                            }
+                                        });
+                                        break;
+                                    case "3MIN":
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                record_time.setText(getString(R.string.min3));
+                                            }
+                                        });
+                                        break;
+                                    case "5MIN":
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                record_time.setText(getString(R.string.min5));
+                                            }
+                                        });
+                                        break;
+                                    case "10MIN":
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                record_time.setText(getString(R.string.min10));
+                                            }
+                                        });
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }).start();
+
     }
 
     private void initListener() {
         device_pwd.setOnClickListener(this);
         tv_record_quality.setOnClickListener(this);
         format.setOnClickListener(this);
-        advanced_settings.setOnClickListener(this);
+        // advanced_settings.setOnClickListener(this);
         tv_info.setOnClickListener(this);
         switch_record.setOnCheckedChangeListener(this);
     }
@@ -192,25 +256,43 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 view.findViewById(R.id.btn_config_pwd).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-                        //^[a-zA-Z]\w{5,17}$
-                        if (!StringUtils.isPWD(et_pwd1.getText().toString())) {
+                        String et1 = et_pwd1.getText().toString();
+                        if (et1.length() < 8) {
+                            Toast.makeText(SettingActivity.this, getString(R.string.pwd_edit2), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        if (!StringUtils.isPassword(et1)) {
                             Toast.makeText(SettingActivity.this, getString(R.string.pwd_edit), Toast.LENGTH_SHORT).show();
                             return;
                         }
+                        //^[a-zA-Z]\w{5,17}$
+//                        if (!StringUtils.isPWD(et_pwd1.getText().toString())) {
+//                            Toast.makeText(SettingActivity.this, getString(R.string.pwd_edit), Toast.LENGTH_SHORT).show();
+//                            return;
+//                        }
                         if (et_pwd1.getText().toString().equals(et_pwd2.getText().toString())) {
+                            changePWDDialog(true);
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {
                                     final String result = NVTKitModel.netSetPassword("" + et_pwd1.getText());
+                                    NVTKitModel.netReConnect();
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
                                             if (result != null) {
-                                                checkDevDialog();
+                                                //checkDevDialog();
+                                                changePWDDialog(false);
+                                                Toast.makeText(SettingActivity.this, getString(R.string.success_change_pwd),
+                                                        Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent();
+                                                intent.setAction(Settings.ACTION_WIFI_SETTINGS);
+                                                startActivity(intent);
+                                                SettingActivity.this.finish();
                                             } else {
                                                 Toast.makeText(SettingActivity.this, getString(R.string.failed_change_pwd),
                                                         Toast.LENGTH_SHORT).show();
+                                                changePWDDialog(false);
                                             }
                                         }
                                     });
@@ -295,14 +377,99 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 });
                 b.create().show();
                 break;
-            case R.id.advanced_settings://高级设置
-                startActivity(new Intent(SettingActivity.this, AdvancedActivity.class));
-                break;
+//            case R.id.advanced_settings://高级设置
+//                startActivity(new Intent(SettingActivity.this, AdvancedActivity.class));
+//                break;
             case R.id.tv_info://摄像机信息
                 startActivity(new Intent(SettingActivity.this, InfoActivity.class));
                 break;
+
+
+            case R.id.btn_reset: //重置
+
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                builder1.setMessage(getString(R.string.reset_config))
+                        .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        final String result = NVTKitModel.devSysReset();
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                if (result != null) {
+                                                    Toast.makeText(SettingActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                                    finish();
+                                                } else {
+                                                    Toast.makeText(SettingActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                                    }
+                                }).start();
+
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                builder1.create().show();
+                break;
+            case R.id.record_time://录制时长
+
+
+                final String[] timeList = new String[]{getString(R.string.off), getString(R.string.min3),
+                        getString(R.string.min5), getString(R.string.min10)};
+                final String[] timeListValue = new String[]{"00", "01", "02", "03"};
+                AlertDialog timeDialog = new AlertDialog.Builder(this)
+                        .setSingleChoiceItems(timeList, -1, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, final int which) {
+                                setLoading(true);
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        final String ack = NVTKitModel.setMovieCyclicRec(timeListValue[which]);
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                setLoading(false);
+                                                if (ack != null) {
+                                                    record_time.setText(timeList[which]);
+                                                }
+                                            }
+                                        });
+                                    }
+                                }).start();
+                                dialog.dismiss();
+                            }
+                        }).create();
+                timeDialog.show();
+
+                break;
         }
 
+    }
+
+    private void changePWDDialog(final boolean isShow) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                pausedialog.setTitle(R.string.dialog_title2);
+                pausedialog.setMessage(getString(R.string.reconnect_device2));
+                if (isShow) {
+                    pausedialog.show();
+                } else {
+                    pausedialog.dismiss();
+                }
+
+            }
+        });
     }
 
     private void checkDevDialog() {
@@ -371,7 +538,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
             public void run() {
                 if (isOpen) {
                     if (!isLoading) {
-                        if (!SettingActivity.this.isFinishing()){
+                        if (!SettingActivity.this.isFinishing()) {
                             pausedialog.show();
                             isLoading = true;
                         }
@@ -395,10 +562,10 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                     movie_res_indexList = result.getRecIndexList();
                     movie_res_infoList = result.getRecInfoList();
 
-                    if (movie_res_indexList == null || movie_res_infoList == null){
+                    if (movie_res_indexList == null || movie_res_infoList == null) {
                         return;
                     }
-                }else{
+                } else {
                     return;
                 }
                 // get device status

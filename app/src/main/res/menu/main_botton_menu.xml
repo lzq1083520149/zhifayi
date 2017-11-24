@@ -3,22 +3,23 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single"
+    <group
+        android:checkableBehavior="single"
         android:enabled="true">
-
-        <item android:id="@+id/nav_home"
-            android:icon="@drawable/icon_home_no"
+        <item
+            android:id="@+id/nav_devices"
             android:enabled="true"
-            android:title="@string/home" />
-
-        <item android:id="@+id/nav_devices"
             android:icon="@drawable/icon_devices"
-            android:enabled="true"
             android:title="@string/devices" />
-
-        <item android:id="@+id/nav_settings"
-            android:icon="@drawable/icon_settings"
+        <item
+            android:id="@+id/nav_home"
             android:enabled="true"
+            android:icon="@drawable/icon_home_no"
+            android:title="@string/home" />
+        <item
+            android:id="@+id/nav_settings"
+            android:enabled="true"
+            android:icon="@drawable/icon_settings"
             android:title="@string/about" />
 
     </group>

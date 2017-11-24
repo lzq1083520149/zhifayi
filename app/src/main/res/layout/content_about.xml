@@ -9,52 +9,55 @@
     tools:context="com.hkcect.z12.ui.AboutActivity"
     tools:showIn="@layout/activity_about">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        >
 
         <ImageView
+            android:layout_centerInParent="true"
             android:id="@+id/iv_logo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:contentDescription="@null"
             android:src="@drawable/ic_lanch_shiliang" />
 
 
-        <TextView
-            android:id="@+id/tv_version"
+        <LinearLayout
+            android:layout_marginBottom="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="2.1.0(1000)"
-            android:textColor="@android:color/black"
-            android:textSize="20sp" />
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="20sp"
+                android:text="@string/ban_ben_hao"
+                android:textColor="@android:color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="2.1.0(1000)"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text=""
-            android:textSize="18sp" />
+    </RelativeLayout>
 
 
-    </LinearLayout>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:text="@string/copy_right"
-        android:textSize="18sp" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:gravity="center"-->
+        <!--android:text="@string/copy_right"-->
+        <!--android:textSize="18sp" />-->
 
 </RelativeLayout>

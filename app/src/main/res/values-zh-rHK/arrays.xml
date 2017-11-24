@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string-array name="tab_titles">
-    <item>Album</item>
+    <item>Home</item>
     <item>Devices</item>
     <item>Device Information</item>
   </string-array>

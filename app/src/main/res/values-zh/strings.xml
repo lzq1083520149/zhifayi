@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
-    <string name="action_settings">Setting</string>
+    <string name="action_settings">设置</string>
     <string name="app_name">取证仪</string>
     <string name="refresh">刷新</string>
-    <string name="open_wifi">打开WiFi连接N10</string>
+    <string name="open_wifi">打开WiFi连接取证仪</string>
     <string name="download">下载</string>
-    <string name="ok">OK</string>
+    <string name="ok">确认</string>
     <string name="cancel">取消</string>
     <string name="delete">删除</string>
     <string name="delete_photo">删除这张照片</string>
@@ -53,7 +53,7 @@
 
     <string name="content_device">正在连接设备%1$s……</string>
 
-    <string name="home">主页</string>
+    <string name="home">相册</string>
     <string name="devices">设备</string>
     <string name="about">关于</string>
     <string name="title_activity_settings">设置</string>
@@ -71,7 +71,8 @@
     <string name="success_change_pwd">更改密码成功！请重新连接设备。</string>
     <string name="failed_change_pwd">更改密码失败！请重试。</string>
     <string name="pwd_same">密码输入不一致！</string>
-    <string name="pwd_edit">请输入8-20内的字母与数字！</string>
+    <string name="pwd_edit">请输入8-20内的字母或数字！</string>
+    <string name="pwd_edit2">请输入至少8位的字母或数字！</string>
     <string name="failed_set_switch">设置失败，请重试！</string>
     <string name="format">格式化成功！</string>
     <string name="format_config">是否要格式化！</string>
@@ -79,6 +80,7 @@
     <string name="title_activity_advanced">高级设置</string>
     <string name="title_activity_info">摄像机信息</string>
     <string name="dialog_title">Processing</string>
+    <string name="dialog_title2">修改密码</string>
     <string name="dialog_wait_message">Please wait...</string>
     <string name="have_not_space">手机内存没有多余空间！</string>
     <string name="title_activity_space_management">空间管理</string>
@@ -104,7 +106,7 @@
     <string name="locked">Locked</string>
     <string name="delete_devices_message">确定删除此设备么？请在系统wifi列表中选中此设备的WIFI并选择忘记密码。</string>
     <string name="title_activity_about">About</string>
-    <string name="copy_right">© 2006&#8211;2017 hkcect.com\n All rights reserved.</string>
+    <string name="copy_right">© 2006&#8211;2017 \n All rights reserved.</string>
     <string name="reset">恢复出厂设置</string>
     <string name="collision_induction">碰撞感应灵敏度</string>
     <string name="file_length">录制文件时长</string>
@@ -112,14 +114,15 @@
     <string name="download_complete">文件下载完成！</string>
     <string name="downloading_file">正在下载%1$s！</string>
     <string name="reconnect_device">Please reconnect to your device!!</string>
+    <string name="reconnect_device2">正在修改密码...</string>
     <string name="try_again">Try again</string>
-    <string name="device_name">摄像机名称</string>
-    <string name="device_pwd">摄像机密码</string>
+    <string name="device_name">取证仪名称</string>
+    <string name="device_pwd">取证仪密码</string>
     <string name="record_auto">自动录像</string>
-    <string name="record_quality">录制质量</string>
+    <string name="record_quality">视频分辨率</string>
     <string name="format_device">格式化</string>
     <string name="advanced_settings">高级设置</string>
-    <string name="device_info">摄像机信息</string>
+    <string name="device_info">取证仪信息</string>
     <string name="connect_failed">连接失败！</string>
     <string name="download_failed">文件下载失败！</string>
 
@@ -143,7 +146,21 @@
     <string name="firm_name">ADVANCED PLUS</string>
 
     <!--空数据-->
-    <string name="null_download">没有可下载视频</string>
+    <string name="null_download">没有可下载内容</string>
     <!--语言-->
     <string name="app_language">语言选择</string>
+    <!--wifi未连接-->
+    <string name="wifi_not_connected">WiFi未连接</string>
+    <string name="wifi_Switch">切换设备</string>
+    <string name="wifi_Switch2">切换</string>
+    <string name="wifi_Switch_msg">请先断开当前连接后再连接新设备</string>
+    <string name="wifi_dian_ji_lian_jie">点击连接</string>
+    <string name="ben_di_tu_pina">本地图片</string>
+    <string name="ben_di_mei_tu_pina">没有本地图片</string>
+    <string name="ban_ben_hao">App 版本：</string>
+    <string name="ban_ben_hao2">App 版本</string>
+    <string name="ti_shi_title">提示</string>
+    <string name="ti_shi_msg">请连接到正确的设备</string>
+    <string name="xia_zai_ti_shi_msg">请至少选择一项</string>
+    <string name="yi_xia_zai">已下载</string>
 </resources>

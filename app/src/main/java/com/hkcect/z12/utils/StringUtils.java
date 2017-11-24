@@ -24,6 +24,7 @@ public class StringUtils {
     public static String root_path = Environment.getExternalStorageDirectory().toString();
 
     public static String local_media_path = root_path + "/Z12/Media/";
+    public static String local_media_down_path = "Z12/Media";
 
 
     /*
@@ -52,6 +53,17 @@ public class StringUtils {
         return mat.find();
     }
 
+    /**
+     * 密码长度8-20位（包含8,20）的数字或字母以及 "_" "-"
+     * @param pwd
+     * @return
+     */
+    public static boolean isPassword(String pwd){
+        String regEx = "^[a-z0-9_-]{8,20}$";
+        Pattern pat = Pattern.compile(regEx);
+        Matcher mat = pat.matcher(pwd);
+        return mat.find();
+    }
     /*
     是否为数字
      */

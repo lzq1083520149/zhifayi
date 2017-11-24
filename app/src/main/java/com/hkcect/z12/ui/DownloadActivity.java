@@ -1,6 +1,7 @@
 package com.hkcect.z12.ui;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
@@ -12,20 +13,29 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.hkcect.z12.R;
-import com.hkcect.z12.adapter.DownloadAdapter;
 import com.hkcect.z12.album.ListItem;
 import com.hkcect.z12.service.DownloadService;
+import com.hkcect.z12.util.DownloadUtil;
 import com.hkcect.z12.util.FileBean;
 import com.hkcect.z12.util.FileDownload;
+import com.hkcect.z12.util.NotificationsUtils;
 import com.hkcect.z12.utils.StringUtils;
 import com.ntk.nvtkit.NVTKitModel;
 import com.ntk.util.FileItem;
@@ -37,6 +47,8 @@ import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.netopen.hotbitmapgg.library.view.RingProgressBar;
 
 
 public class DownloadActivity extends BaseActivity implements View.OnClickListener {
@@ -96,6 +108,7 @@ public class DownloadActivity extends BaseActivity implements View.OnClickListen
     private final MyHandler mHandler = new MyHandler(this);
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,6 +146,30 @@ public class DownloadActivity extends BaseActivity implements View.OnClickListen
         btn_delete = (Button) findViewById(R.id.btn_delete);
         btn_download.setOnClickListener(this);
         btn_delete.setOnClickListener(this);
+
+//        recycler_download.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//            }
+//
+//            @Override
+//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//                RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+//                //判断是当前layoutManager是否为LinearLayoutManager
+//                // 只有LinearLayoutManager才有查找第一个和最后一个可见view位置的方法
+//                if (layoutManager instanceof LinearLayoutManager) {
+//                    LinearLayoutManager linearManager = (LinearLayoutManager) layoutManager;
+//                    //获取最后一个可见view的位置
+//                    last = linearManager.findLastVisibleItemPosition();
+//                    //获取第一个可见view的位置
+//                    first = linearManager.findFirstVisibleItemPosition();
+//
+//                    Log.e("item 可见范围", first + "   " + last);
+//                }
+//            }
+//        });
 
     }
 
@@ -182,12 +219,12 @@ public class DownloadActivity extends BaseActivity implements View.OnClickListen
                             newsData.setTIMECODE(fileItemArrayList.get(i).TIMECODE);
                             listMockData.add(newsData);
                         }
-                        if (listMockData.size()>0){
+                        if (listMockData.size() > 0) {
                             isSelectBox = true;
                             mHandler.obtainMessage(0, listMockData).sendToTarget();
-                        }else {
+                        } else {
                             isSelectBox = false;
-                            mHandler.obtainMessage(1,listMockData).sendToTarget();
+                            mHandler.obtainMessage(1, listMockData).sendToTarget();
                         }
 
                     }
@@ -197,34 +234,6 @@ public class DownloadActivity extends BaseActivity implements View.OnClickListen
             }
         }).start();
     }
-
-    /*
-      监听下载进度
-       */
-//    private void initDownloadProgress() {
-//
-//        ArrayList<FileItem> fileItemArrayList = adapter.getData();
-//        for (int i = 0; i < fileItemArrayList.size(); i++) {
-//            String url1 = fileItemArrayList.get(i).FPATH.replace("A:", "http://" + Util.getDeciceIP() + "");
-//            final String url2 = url1.replace("\\", "/");
-//            RxDownload.getInstance(this).receiveDownloadStatus(url2)
-//                    .subscribe(new Consumer<DownloadEvent>() {
-//                        @Override
-//                        public void accept(DownloadEvent event) throws Exception {
-//                            //当事件为Failed时, 才会有异常信息, 其余时候为null.
-//                            if (event.getFlag() == DownloadFlag.FAILED) {
-//                                Throwable throwable = event.getError();
-//                                Log.w("Error", throwable);
-//                            } else {
-//                                if (event.getDownloadStatus().getTotalSize() > 0) {
-//                                    final long l = event.getDownloadStatus().getDownloadSize() / (event.getDownloadStatus().getTotalSize());
-//
-//                                }
-//                            }
-//                        }
-//                    });
-//        }
-//    }
 
 
     @Override
@@ -249,38 +258,22 @@ public class DownloadActivity extends BaseActivity implements View.OnClickListen
                             FileDownload file = new FileDownload();
                             file.setUrl(fileItemArrayList.get(i).getUrl());
                             file.setName(fileItemArrayList.get(i).getName());
+                            file.setSelectPosstion(fileItemArrayList.get(i).getSelectPosstion());
                             urls.add(file);
                         }
                     }
 
                 }
                 if (urls.size() == 0) {
+                    Toast.makeText(this, R.string.download, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-//                RxDownload.getInstance(this)
-//                        .serviceMultiDownload("download", urls)
-//                        .subscribe(new Consumer<Object>() {
-//                            @Override
-//                            public void accept(Object o) throws Exception {
-//                                Toast.makeText(DownloadActivity.this, R.string.start_download, Toast.LENGTH_SHORT).show();
-//                            }
-//                        }, new Consumer<Throwable>() {
-//                            @Override
-//                            public void accept(Throwable throwable) throws Exception {
-//                                Log.w(TAG, throwable);
-//                                Toast.makeText(DownloadActivity.this, R.string.failed_add, Toast.LENGTH_SHORT).show();
-//                            }
-//                        }, new Action() {
-//                            @Override
-//                            public void run() throws Exception {
-//                                initData();
-//                            }
-//                        });
+                startDownload(urls);
 
-                Intent intent = new Intent(this, DownloadService.class);
-                intent.putParcelableArrayListExtra("download", urls);
-                startService(intent);
+//                Intent intent = new Intent(this, DownloadService.class);
+//                intent.putParcelableArrayListExtra("download", urls);
+//                startService(intent);
 
                 break;
             case R.id.btn_delete://删除
@@ -348,60 +341,245 @@ public class DownloadActivity extends BaseActivity implements View.OnClickListen
 
     }
 
+    private void startDownload(final ArrayList<FileDownload> urls) {
+        for (int i = 0; i < urls.size(); i++) {
+            final int finalI = i;
+            final int finalPossition = urls.get(finalI).getSelectPosstion();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    //if (isCurrentGridViewItemVisible(finalPossition)){
+                    //DownloadAdapter.ViewHold viewHolder = getViewHolder(finalPossition);
+                    DownloadAdapter.ViewHold viewHolder = myViewHolderList.get(finalPossition);
+                    viewHolder.rl_download.setVisibility(View.VISIBLE);
+                    viewHolder.download_pb.setVisibility(View.VISIBLE);
+                    //}
+                }
+            });
+            DownloadUtil.get().download(urls.get(i).getUrl(), StringUtils.local_media_down_path, new DownloadUtil.OnDownloadListener() {
+                @Override
+                public void onDownloadSuccess() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // if (isCurrentGridViewItemVisible(finalPossition)){
+                            //DownloadAdapter.ViewHold viewHolder = getViewHolder(finalPossition);
+                            DownloadAdapter.ViewHold viewHolder = myViewHolderList.get(finalPossition);
+                            viewHolder.download_pb.setVisibility(View.GONE);
+                            viewHolder.cb_download_item.setChecked(false);
+                            viewHolder.cb_download_item.setVisibility(View.GONE);
+                            viewHolder.tv_download_state.setText(R.string.yi_xia_zai);
+                            // }
+                        }
+                    });
+                }
+
+                @Override
+                public void onDownloading(int progress) {
+
+                    // if (isCurrentGridViewItemVisible(finalPossition)){
+                    // DownloadAdapter.ViewHold viewHolder = getViewHolder(finalPossition);
+                    DownloadAdapter.ViewHold viewHolder = myViewHolderList.get(finalPossition);
+                    viewHolder.download_pb.setProgress(progress);
+                    viewHolder.cb_download_item.setChecked(false);
+                    //  }
+
+                }
+
+                @Override
+                public void onDownloadFailed() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // if (isCurrentGridViewItemVisible(finalPossition)){
+                            //DownloadAdapter.ViewHold viewHolder = getViewHolder(finalPossition);
+                            DownloadAdapter.ViewHold viewHolder = myViewHolderList.get(finalPossition);
+                            viewHolder.download_pb.setVisibility(View.GONE);
+                            viewHolder.tv_download_state.setText("下载失败");
+                            //  }
+                        }
+                    });
+                }
+            });
+        }
+
+    }
+
+//    int last = 0;
+//    int first = 0;
+//
+//    //判断item是否在可见范围内
+//    private boolean isCurrentGridViewItemVisible(final int position) {
+//        return first <= position && position <= last;
+//    }
+//
+//    //获取某个item的holder
+//    private DownloadAdapter.ViewHold getViewHolder(int position) {
+//        int childPosition = position - first;
+//        View view = recycler_download.getChildAt(childPosition);
+//        return (DownloadAdapter.ViewHold) recycler_download.getChildViewHolder(view);
+//    }
+
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        item=menu;
+        item = menu;
         getMenuInflater().inflate(R.menu.download_menu, menu);
         return true;
     }
 
     private boolean isSelectBox = false;
-    private static Menu item ;
+    private static Menu item;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.download_select_all:
-                    item.setChecked(!item.isChecked());
-                    item.setIcon(item.isChecked() ? R.drawable.ic_check_box_white_24dp : R.drawable.ic_check_box_outline_blank_white_24dp);
-                    Log.i(TAG, "onOptionsItemSelected: " + item.isChecked());
+                item.setChecked(!item.isChecked());
+                item.setIcon(item.isChecked() ? R.drawable.ic_check_box_white_24dp : R.drawable.ic_check_box_outline_blank_white_24dp);
+                Log.i(TAG, "onOptionsItemSelected: " + item.isChecked());
 
-                    if (item.isChecked()) {
-                        adapter.selectAll();
-                    } else {
-                        adapter.removeAll();
-                    }
+                if (item.isChecked()) {
+                    adapter.selectAll();
+                } else {
+                    adapter.removeAll();
+                }
 
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    List<DownloadAdapter.ViewHold> myViewHolderList;
 
-//
-//    private class DownloadReceiver extends ResultReceiver {
-//        public DownloadReceiver(Handler handler) {
-//            super(handler);
-//        }
-//        @Override
-//        protected void onReceiveResult(int resultCode, Bundle resultData) {
-//            super.onReceiveResult(resultCode, resultData);
-//            if (resultCode == DownloadService.UPDATE_PROGRESS) {
-//                int progress = resultData.getInt("progress");
-//                String name  = resultData.getString("name");
-//
-//                mProgressDialog.setProgress(progress);
-//                mProgressDialog.setMessage(name);
-//                if (progress == 100) {
-//                    mProgressDialog.dismiss();
-//                }
-//            }
-//        }
-//    }
+    public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.ViewHold> {
+
+
+        private Context context;
+        private ArrayList<ListItem> fileItemArrayList;
+
+        public DownloadAdapter(Context context) {
+            this.context = context;
+            myViewHolderList = new ArrayList<>();
+        }
+
+        public void setData(ArrayList<ListItem> list) {
+            if (fileItemArrayList == null) {
+                fileItemArrayList = list;
+            } else {
+                fileItemArrayList.clear();
+                fileItemArrayList.addAll(list);
+            }
+            notifyDataSetChanged();
+        }
+
+
+        public void selectAll() {
+
+            if (fileItemArrayList != null) {
+                for (int i = 0; i < fileItemArrayList.size(); i++) {
+                    fileItemArrayList.get(i).isChecked = true;
+                }
+            }
+
+            notifyDataSetChanged();
+        }
+
+        public void removeAll() {
+
+            if (fileItemArrayList != null) {
+                for (int i = 0; i < fileItemArrayList.size(); i++) {
+                    fileItemArrayList.get(i).isChecked = false;
+                }
+            }
+            notifyDataSetChanged();
+        }
+
+        public ArrayList<ListItem> getData() {
+            return fileItemArrayList;
+        }
+
+
+        @Override
+        public DownloadAdapter.ViewHold onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new DownloadAdapter.ViewHold(LayoutInflater.from(context).inflate(R.layout.activity_download_item, parent, false));
+        }
+
+        @Override
+        public void onBindViewHolder(final DownloadAdapter.ViewHold holder, final int position) {
+            final ViewHold viewHolder = (ViewHold) holder;
+            //用holder绑定对应的position
+            viewHolder.setDataPosition(position);
+            //判断list里面是否含有该holder，没有就增加
+            //因为list已经持有holder的引用，所有数据自动会改变
+            if (!(myViewHolderList.contains(viewHolder))) {
+                myViewHolderList.add(viewHolder);
+            }
+            holder.tv_download_name.setText(fileItemArrayList.get(position).getName());
+            holder.cb_download_item.setChecked(fileItemArrayList.get(position).isChecked);
+            holder.tv_download_size.setText(StringUtils.byte2FitMemorySize(Long.valueOf(fileItemArrayList.get(position).getSIZE())));
+            holder.tv_download_time.setText(fileItemArrayList.get(position).getTime());
+            holder.cb_download_item.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    fileItemArrayList.get(holder.getAdapterPosition()).isChecked = isChecked;
+                    if (isChecked) {
+                        fileItemArrayList.get(holder.getAdapterPosition()).setSelectPosstion(holder.getAdapterPosition());
+                    }
+
+                }
+            });
+            //holder.download_pb.setProgress(0);
+
+
+            if (fileItemArrayList.get(position).getUrl().endsWith("JPG")) {
+                Glide.with(context).load(fileItemArrayList.get(position).getUrl()).into(holder.iv_download_item);
+            } else {
+
+            }
+
+        }
+
+
+        @Override
+        public int getItemCount() {
+            return fileItemArrayList == null ? 0 : fileItemArrayList.size();
+        }
+
+        class ViewHold extends RecyclerView.ViewHolder {
+            TextView tv_download_state;
+            TextView tv_download_name;
+            TextView tv_download_time;
+            TextView tv_download_size;
+            ImageView iv_download_item;
+            //        ProgressBar pb_download;
+            CheckBox cb_download_item;
+            RingProgressBar download_pb;
+            RelativeLayout rl_download;
+            int position;
+
+            private void setDataPosition(int position) {
+                this.position = position;
+            }
+
+            public ViewHold(View itemView) {
+                super(itemView);
+                tv_download_state = (TextView) itemView.findViewById(R.id.tv_download_state);
+                tv_download_name = (TextView) itemView.findViewById(R.id.tv_download_name);
+                tv_download_time = (TextView) itemView.findViewById(R.id.tv_download_time);
+                tv_download_size = (TextView) itemView.findViewById(R.id.tv_download_size);
+                iv_download_item = (ImageView) itemView.findViewById(R.id.iv_download_item);
+//            pb_download = (ProgressBar) itemView.findViewById(R.id.pb_download);
+                cb_download_item = (CheckBox) itemView.findViewById(R.id.cb_download_item);
+                download_pb = (RingProgressBar) itemView.findViewById(R.id.download_pb);
+                rl_download = (RelativeLayout) itemView.findViewById(R.id.rl_download);
+            }
+        }
+    }
 }

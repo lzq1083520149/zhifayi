@@ -2,80 +2,100 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@color/view_line"
-    android:layout_height="80dp">
+    android:layout_height="80dp"
+    android:background="@color/view_line">
 
     <ImageView
         android:id="@+id/iv_download_item"
         android:layout_width="110dp"
-        android:scaleType="fitXY"
+        android:layout_height="80dp"
         android:background="@mipmap/noimage"
-        android:layout_height="80dp" />
+        android:scaleType="fitXY" />
 
     <!--<ProgressBar-->
-        <!--android:id="@+id/pb_download"-->
-        <!--android:layout_width="110dp"-->
-        <!--android:layout_height="80dp" />-->
-
-    <TextView
-        android:id="@+id/tv_download_state"
+    <!--android:id="@+id/pb_download"-->
+    <!--android:layout_width="110dp"-->
+    <!--android:layout_height="80dp" />-->
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_download"
+        android:background="#6c000000"
         android:layout_width="110dp"
-        android:layout_height="80dp"
-        android:gravity="center"
-        android:text=""
-        android:textSize="20sp" />
+        android:layout_height="80dp">
+        <com.hkcect.z12.utils.MarqueeTextView
+            android:id="@+id/tv_download_state"
+            android:layout_width="110dp"
+            android:layout_height="80dp"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+        <io.netopen.hotbitmapgg.library.view.RingProgressBar
+            android:id="@+id/download_pb"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            app:max="100"
+            app:ringColor="@android:color/darker_gray"
+            app:ringProgressColor="@color/start_background"
+            app:ringWidth="3dp"
+            app:style="STROKE"
+            app:textColor="@color/start_background"
+            app:textIsShow="true"
+            app:textSize="16sp" />
+    </RelativeLayout>
+
+
 
     <!--<com.hkcect.z12.utils.FreshDownloadView-->
-        <!--android:id="@+id/download_pb"-->
-        <!--android:layout_marginLeft="15dp"-->
-        <!--android:layout_marginStart="15dp"-->
-        <!--android:layout_width="80dp"-->
-        <!--android:layout_height="80dp" />-->
+    <!--android:id="@+id/download_pb"-->
+    <!--android:layout_marginLeft="15dp"-->
+    <!--android:layout_marginStart="15dp"-->
+    <!--android:layout_width="80dp"-->
+    <!--android:layout_height="80dp" />-->
+    <!--<ProgressBar-->
+    <!--android:visibility="gone"-->
+    <!--android:layout_marginLeft="25dp"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:id="@+id/download_pb"-->
+    <!--android:layout_width="60dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--/>-->
 
-    <io.netopen.hotbitmapgg.library.view.RingProgressBar
-        android:id="@+id/download_pb"
-        android:layout_width="60dp"
-        android:layout_centerInParent="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="25dp"
-        android:layout_height="60dp"
-        android:visibility="gone"
-        app:max="100"
-        app:ringColor="@android:color/darker_gray"
-        app:ringProgressColor="@color/colorPrimary"
-        app:ringWidth="3dp"
-        app:style="STROKE"
-        app:textColor="@color/colorPrimary"
-        app:textIsShow="true"
-        app:textSize="16sp" />
 
     <CheckBox
         android:id="@+id/cb_download_item"
         android:layout_width="30dp"
-        android:button="@drawable/download_checkbox_background"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:button="@drawable/download_checkbox_background" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
         android:layout_toEndOf="@id/iv_download_item"
         android:layout_toLeftOf="@id/cb_download_item"
         android:layout_toRightOf="@id/iv_download_item"
         android:layout_toStartOf="@id/cb_download_item"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp">
 
         <TextView
             android:id="@+id/tv_download_name"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:textStyle="bold"
+            android:gravity="center|start"
             android:text="20170305_110110_004.JPG"
-            android:gravity="center|start" />
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -168,15 +168,15 @@
                 android:textColor="@android:color/black"
                 android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/advanced_settings"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
-                android:gravity="center|left"
-                android:text="@string/advanced_settings"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
+            <!--<TextView-->
+                <!--android:id="@+id/advanced_settings"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="48dp"-->
+                <!--android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"-->
+                <!--android:gravity="center|left"-->
+                <!--android:text="@string/advanced_settings"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
 
             <TextView
                 android:id="@+id/tv_info"
@@ -188,5 +188,43 @@
                 android:textColor="@android:color/black"
                 android:textSize="20sp" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/view_background"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:text="@string/file_length"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/record_time"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:ellipsize="middle"
+                android:gravity="center|right"
+                android:lines="1"
+                android:text=""
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_reset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/btn_background"
+            android:text="@string/reset"
+            android:textColor="@color/white" />
     </LinearLayout>
 </ScrollView>

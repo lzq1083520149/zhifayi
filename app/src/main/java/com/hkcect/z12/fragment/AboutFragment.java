@@ -4,6 +4,8 @@ package com.hkcect.z12.fragment;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -27,6 +29,7 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
 
 
     private static AboutFragment inStance = null;
+    private TextView tv_ban_ben_hao;
 
     public AboutFragment() {
     }
@@ -47,7 +50,9 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view  = inflater.inflate(R.layout.fragment_about, container, false);
-        view.findViewById(R.id.tv_space).setOnClickListener(this);
+        //view.findViewById(R.id.tv_space).setOnClickListener(this);
+       tv_ban_ben_hao= (TextView) view.findViewById(R.id.tv_ban_ben_hao);
+        tv_ban_ben_hao.setText(getVersion()+"");
         view.findViewById(R.id.tv_about).setOnClickListener(this);
         //view.findViewById(R.id.tv_language).setOnClickListener(this);
 //        CheckBox cb_night_mode = (CheckBox) view.findViewById(R.id.cb_night_mode);
@@ -59,9 +64,9 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tv_space://存储管理
-                startActivity(new Intent(getContext(), SpaceManagementActivity.class));
-                break;
+//            case R.id.tv_space://存储管理
+//                startActivity(new Intent(getContext(), SpaceManagementActivity.class));
+//                break;
             case R.id.tv_about://关于页面
                 startActivity(new Intent(getContext(), AboutActivity.class));
                 break;
@@ -85,4 +90,20 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
 //        }
 //        getActivity().recreate();
 //    }
+
+    /**
+     * 获取版本
+     * @return 版本(版本号)
+     */
+    public String getVersion() {
+        try {
+            PackageManager manager = getActivity().getPackageManager();
+            PackageInfo info = manager.getPackageInfo(getActivity().getPackageName(), 0);
+            //return info.versionName + "(" + info.versionCode + ")";
+            return info.versionName;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
 }

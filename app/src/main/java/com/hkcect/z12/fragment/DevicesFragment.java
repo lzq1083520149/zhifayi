@@ -32,8 +32,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -134,33 +136,48 @@ public class DevicesFragment extends Fragment implements SwipeRefreshLayout.OnRe
         if (wifiList != null) {
             wifiList.clear();
         }
-        //添加第一个为已连接的WiFi
         if (connectionInfo != null) {
             if (configuratedList != null) {
                 for (int i = 0; i < configuratedList.size(); i++) {
                     String ssid = configuratedList.get(i).SSID;
-                    if (ssid.startsWith("\"" + StringUtils.devices_name) &&ssid.equals(connectionInfo.getSSID())||ssid.startsWith("\"" + "CarDV")) {
+                    if (ssid.equals(connectionInfo.getSSID())) {
                         wifiList.add(configuratedList.get(i));
                     }
                 }
             }
         }
-        if (configuratedList == null) {
-            //未找到数据
-        } else {
-            for (int i = 0; i < configuratedList.size(); i++) {
-                String ssid = configuratedList.get(i).SSID;
-
-                //NVT_CARD
-                if (ssid.startsWith("\"" + StringUtils.devices_name) && !ssid.equals(connectionInfo.getSSID())||ssid.startsWith("\"" + "CarDV")) {
-                    wifiList.add(configuratedList.get(i));
+        if (connectionInfo != null) {
+            if (configuratedList != null) {
+                for (int i = 0; i < configuratedList.size(); i++) {
+                    String ssid = configuratedList.get(i).SSID;
+                    if (!ssid.equals(connectionInfo.getSSID())) {
+                        wifiList.add(configuratedList.get(i));
+                    }
                 }
             }
         }
-//        if (wifiList!=null){
-//            for (int i = 0; i < wifiList.size(); i++) {
-//                    sp.put("dvssid"+i,wifiList.get(i).SSID);
-//                    sp.put("dvnetworkId"+i,wifiList.get(i).networkId);
+
+//        //添加第一个为已连接的WiFi
+//        if (connectionInfo != null) {
+//            if (configuratedList != null) {
+//                for (int i = 0; i < configuratedList.size(); i++) {
+//                    String ssid = configuratedList.get(i).SSID;
+//                    if (ssid.startsWith("\"" + StringUtils.devices_name) &&ssid.equals(connectionInfo.getSSID())||ssid.startsWith("\"" + "CarDV")) {
+//                        wifiList.add(configuratedList.get(i));
+//                    }
+//                }
+//            }
+//        }
+//        if (configuratedList == null) {
+//            //未找到数据
+//        } else {
+//            for (int i = 0; i < configuratedList.size(); i++) {
+//                String ssid = configuratedList.get(i).SSID;
+//
+//                //NVT_CARD
+//                if (ssid.startsWith("\"" + StringUtils.devices_name) && !ssid.equals(connectionInfo.getSSID())||ssid.startsWith("\"" + "CarDV")) {
+//                    wifiList.add(configuratedList.get(i));
+//                }
 //            }
 //        }
 
@@ -178,6 +195,7 @@ public class DevicesFragment extends Fragment implements SwipeRefreshLayout.OnRe
         recycler_devices.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new DevicesAdapter(wifiList);
         recycler_devices.setAdapter(adapter);
+
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
